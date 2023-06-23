@@ -2,16 +2,20 @@
   font-family: "Roboto";
   src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
 }
+
 body {
   display: grid;
   place-items: center;
 }
+
 * {
   font-family: "Roboto", sans-serif;
 }
+
 h1 {
   color: rgb(57, 144, 173);
 }
+
 .form {
   border: 2px solid rgb(57, 144, 173);
   padding: 15px;
@@ -32,6 +36,7 @@ h1 {
   .inputContainer:where(.name-lastname, .email-tel, .message) {
     grid-column: 1/-1;
   }
+
   input,
   select {
     outline: none;
@@ -46,41 +51,33 @@ h1 {
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
-  
+
   input[type="text"] {
     width: 80%;
   }
-  input[name="Name/Last Name"] {
-    width: 80%;
-  }
+
   label {
     display: inline-flex;
     align-items: center;
   }
 
-  .emailSpecificationLabel {
+  .hidden,
+  .invalidText {
     display: none;
   }
 
-  .hidden {
-    display: none;
-  }
   .invalid {
     position: relative;
     border: 2px solid red;
   }
-  .invalidText {
-    display: none;
-  }
+
   .invalid + .invalidText {
     display: inline-block;
     color: red;
     white-space: nowrap;
     font-size: 0.8em;
   }
-  .show {
-    display: inline-block;
-  }
+
   input:is([type="radio"], [type="checkbox"]) {
     accent-color: rgb(57, 144, 173);
   }

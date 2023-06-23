@@ -49,34 +49,23 @@ h1 {
 .form input[type=text] {
   width: 80%;
 }
-.form input[name="Name/Last Name"] {
-  width: 80%;
-}
 .form label {
   display: inline-flex;
   align-items: center;
 }
-.form .emailSpecificationLabel {
-  display: none;
-}
-.form .hidden {
+.form .hidden,
+.form .invalidText {
   display: none;
 }
 .form .invalid {
   position: relative;
   border: 2px solid red;
 }
-.form .invalidText {
-  display: none;
-}
 .form .invalid + .invalidText {
   display: inline-block;
   color: red;
   white-space: nowrap;
   font-size: 0.8em;
-}
-.form .show {
-  display: inline-block;
 }
 .form input:is([type=radio], [type=checkbox]) {
   accent-color: rgb(57, 144, 173);

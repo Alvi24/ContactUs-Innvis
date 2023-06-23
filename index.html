@@ -77,6 +77,7 @@
           <label class="telEmailLabel"
             >Tel <input type="radio" name="Contact via" id="tel" value="Tel"
           /></label>
+          
           <label class="emailSpecificationLabel hidden"
             >Use entered email
             <input
@@ -84,7 +85,7 @@
               name="EmailSpecification"
               value="Use entered email"
           /></label>
-          <label class="emailSpecificationLabel"
+          <label class="emailSpecificationLabel hidden"
             >Use another email
             <input
               type="radio"
@@ -104,7 +105,7 @@
             class="hidden"
             placeholder="...Write something"
             oninput="validateInput(event.target)"
-            onchange="validateInput(event.target)"
+            onblur="validateInput(event.target)"
           />
           <label class="invalidText"
             >Input text should contain at least 50 characters</label

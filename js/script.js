@@ -1,16 +1,12 @@
 const form = document.querySelector("form");
 const messageCheckBox = document.querySelector("input[type='checkbox']");
-const radioButtonEmail = document.querySelector("#email");
 const radioButtonsTelEmail = Array.from(
   document.querySelectorAll("input[name='Contact via']")
-);
-const radioButtonsEmailSpecificationLabel = Array.from(
-  document.querySelectorAll(".emailSpecificationLabel")
 );
 const dropdown = document.querySelector("select");
 
 window.addEventListener("load", function () {
-  // refresh all inputs on refresh (Firefox)
+  // refresh all inputs on reload (Firefox)
   let textInputs = document.querySelectorAll(
     'select,input:not(:is([type="checkbox"],[type="radio"]))'
   );
@@ -25,36 +21,39 @@ dropdown.addEventListener("change", () => {
   dropdown.classList.remove("invalid");
 });
 
-radioButtonsTelEmail.forEach((clickedRadioButton) =>
-  clickedRadioButton.addEventListener("click", () => {
-    radioButtonsEmailSpecificationLabel.forEach(
-      (radioButtonEmailSpecificationLabel) => {
-        const radioButtonEmailSpecification =
-          radioButtonEmailSpecificationLabel.querySelector(
-            "input[type='radio']"
-          );
-        if (clickedRadioButton.id == "email") {
-          radioButtonEmailSpecificationLabel.classList.add("show");
-          radioButtonEmailSpecification.required = true;
-        } else {
-          radioButtonEmailSpecificationLabel.classList.remove("show");
-          radioButtonEmailSpecification.required = false;
-          radioButtonEmailSpecification.checked = false;
-        }
-      }
-    );
-  })
+function handleRadioButtonTelEmailClick(clickedRadioButtonTelEmail) {
+  const radioButtonsEmailSpecification = Array.from(
+    document.querySelectorAll("input[name='EmailSpecification']")
+  );
+
+  radioButtonsEmailSpecification.forEach((radioButtonEmailSpecification) => {
+    if (clickedRadioButtonTelEmail.id == "email") {
+      radioButtonEmailSpecification.parentElement.classList.remove("hidden");
+      radioButtonEmailSpecification.required = true;
+    } else {
+      radioButtonEmailSpecification.parentElement.classList.add("hidden");
+      radioButtonEmailSpecification.required = false;
+      radioButtonEmailSpecification.checked = false;
+    }
+  });
+}
+
+radioButtonsTelEmail.forEach((radioButtonTelEmail) =>
+  radioButtonTelEmail.addEventListener("click", () =>
+    handleRadioButtonTelEmailClick(radioButtonTelEmail)
+  )
 );
 
 messageCheckBox.addEventListener("click", () => {
   const messageTextInput = document.querySelector("input[name='MessageText']");
-  if (messageTextInput.classList.contains("show")) {
-    messageTextInput.value = "";
-    messageTextInput.classList = "hidden";
-    messageTextInput.required = false;
-  } else {
-    messageTextInput.classList = "show";
+  if (messageTextInput.classList.contains("hidden")) {
+    messageTextInput.classList.remove("hidden");
     messageTextInput.required = true;
+  } else {
+    messageTextInput.value = "";
+    messageTextInput.classList.add("hidden");
+    messageTextInput.classList.remove("invalid");
+    messageTextInput.required = false;
   }
 });
 
@@ -63,7 +62,7 @@ function validateInput(input) {
 
   switch (input.type) {
     case "text":
-      isInputValid = input.value.trim().length >= 10;
+      isInputValid = input.value.trim().length >= 50;
       break;
     case "email":
       const EmailRegEx = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,}$/;
