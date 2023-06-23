@@ -9,6 +9,18 @@ const radioButtonsEmailSpecificationLabel = Array.from(
 );
 const dropdown = document.querySelector("select");
 
+window.addEventListener("load", function () {
+  // refresh all inputs on refresh (Firefox)
+  let textInputs = document.querySelectorAll(
+    'select,input:not(:is([type="checkbox"],[type="radio"]))'
+  );
+  let buttons = document.querySelectorAll(
+    'input:is([type="checkbox"],[type="radio"])'
+  );
+  textInputs.forEach((textInput) => (textInput.value = ""));
+  buttons.forEach((button) => (button.checked = false));
+});
+
 dropdown.addEventListener("change", () => {
   dropdown.classList.remove("invalid");
 });
