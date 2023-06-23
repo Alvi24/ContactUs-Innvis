@@ -1,10 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Contact us</h1>
+    </header>
+    <main>
+      <form class="form">
+        <fieldset class="inputContainer name-lastname">
+          <legend>Name / Last Name</legend>
+          <input
+            type="text"
+            name="Name/Last Name"
+            placeholder="Name / Last Name"
+            oninput="validateInput(event.target)"
+            onblur="validateInput(event.target)"
+            required
+          />
+          <label class="invalidText"
+            >Input text should contain at least 50 characters</label
+          >
+        </fieldset>
+        <fieldset class="inputContainer email">
+          <legend>Email</legend>
+          <input
+            type="email"
+            name="Email"
+            placeholder="Email"
+            oninput="validateInput(event.target)"
+            onblur="validateInput(event.target)"
+            required
+          />
+          <label class="invalidText">Enter a valid email address</label>
+        </fieldset>
+        <fieldset class="inputContainer tel">
+          <legend>Tel</legend>
+          <input
+            type="tel"
+            name="Tel"
+            placeholder="Tel"
+            oninput="validateInput(event.target)"
+            onblur="validateInput(event.target)"
+            required
+          />
+          <label class="invalidText">Enter a valid telephone number</label>
+        </fieldset>
+        <fieldset>
+          <legend>Purpose of contact</legend>
+          <select id="purpose" class="dropdown" name="Purpose of contact">
+            <option value="">Select an option</option>
+            <option value="General-inquiry">General Inquiry</option>
+            <option value="Product-support">Product Support</option>
+            <option value="Sales-inquiry">Sales Inquiry</option>
+            <option value="Media-press-inquiry">Media/Press Inquiry</option>
+            <option value="Feedback-suggestions">Feedback/Suggestions</option>
+            <option value="Other">Other</option>
+          </select>
+          <label class="invalidText">Select an option</label>
+        </fieldset>
+        <fieldset>
+          <legend>Contact me via</legend>
+          <label class="telEmailLabel"
+            >Email
+            <input
+              type="radio"
+              name="Contact via"
+              id="email"
+              value="Email"
+              required
+          /></label>
+          <label class="telEmailLabel"
+            >Tel <input type="radio" name="Contact via" id="tel" value="Tel"
+          /></label>
+          <label class="emailSpecificationLabel hidden"
+            >Use entered email
+            <input
+              type="radio"
+              name="EmailSpecification"
+              value="Use entered email"
+          /></label>
+          <label class="emailSpecificationLabel"
+            >Use another email
+            <input
+              type="radio"
+              name="EmailSpecification"
+              value="Use another email"
+          /></label>
+        </fieldset>
+        <fieldset class="inputContainer message">
+          <legend>Message</legend>
+          <label
+            ><input type="checkbox" name="checkboxMessage" id="message" />Leave
+            a Message</label
+          >
+          <input
+            type="text"
+            name="MessageText"
+            class="hidden"
+            placeholder="...Write something"
+            oninput="validateInput(event.target)"
+            onchange="validateInput(event.target)"
+          />
+          <label class="invalidText"
+            >Input text should contain at least 50 characters</label
+          >
+        </fieldset>
+        <label
+          ><input type="checkbox" name="checkboxTerms" id="terms" required />
+          Accept terms</label
+        >
+        <button type="submit" class="registerButton">Submit</button>
+      </form>
+    </main>
+    <script src="./js/script.js"></script>
+  </body>
 </html>

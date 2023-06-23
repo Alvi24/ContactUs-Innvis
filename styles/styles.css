@@ -1,0 +1,93 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+body {
+  display: grid;
+  place-items: center;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: rgb(57, 144, 173);
+}
+
+.form {
+  border: 2px solid rgb(57, 144, 173);
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 15px;
+  border-radius: 7px;
+}
+.form fieldset {
+  position: relative;
+  text-align: center;
+}
+.form fieldset legend {
+  color: rgb(57, 144, 173);
+}
+.form .inputContainer:where(.name-lastname, .email-tel, .message) {
+  grid-column: 1/-1;
+}
+.form input,
+.form select {
+  outline: none;
+  border: none;
+  background: none;
+  border-bottom: 2px solid rgb(57, 144, 173);
+}
+.form input:-webkit-autofill,
+.form input:-webkit-autofill:hover,
+.form input:-webkit-autofill:focus,
+.form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.form input[type=text] {
+  width: 80%;
+}
+.form input[name="Name/Last Name"] {
+  width: 80%;
+}
+.form label {
+  display: inline-flex;
+  align-items: center;
+}
+.form .emailSpecificationLabel {
+  display: none;
+}
+.form .hidden {
+  display: none;
+}
+.form .invalid {
+  position: relative;
+  border: 2px solid red;
+}
+.form .invalidText {
+  display: none;
+}
+.form .invalid + .invalidText {
+  display: inline-block;
+  color: red;
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+.form .show {
+  display: inline-block;
+}
+.form input:is([type=radio], [type=checkbox]) {
+  accent-color: rgb(57, 144, 173);
+}
+.form .registerButton {
+  color: white;
+  background-color: rgb(57, 144, 173);
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.form .registerButton:hover {
+  transform: scale(1.05);
+}/*# sourceMappingURL=styles.css.map */
