@@ -12,45 +12,27 @@
     </header>
     <main>
       <form class="form">
-        <fieldset class="inputContainer name-lastname">
-          <legend>Name / Last Name</legend>
-          <input
-            type="text"
-            name="Name/Last Name"
-            placeholder="Name / Last Name"
-            oninput="validateInput(event.target)"
-            onblur="validateInput(event.target)"
-            required
-          />
-          <label class="invalidText"
-            >Input text should contain at least 50 characters</label
-          >
+        <fieldset class="inputContainer name">
+          <legend>Name</legend>
+          <input type="text" name="Name" placeholder="Name" />
+          <label class="invalidText">Input character range is (1 - 50)</label>
+        </fieldset>
+        <fieldset class="inputContainer lastname">
+          <legend>Last Name</legend>
+          <input type="text" name="Last Name" placeholder="Last Name" />
+          <label class="invalidText">Input character range is (1 - 50)</label>
         </fieldset>
         <fieldset class="inputContainer email">
           <legend>Email</legend>
-          <input
-            type="email"
-            name="Email"
-            placeholder="Email"
-            oninput="validateInput(event.target)"
-            onblur="validateInput(event.target)"
-            required
-          />
+          <input type="email" name="Email" placeholder="Email" />
           <label class="invalidText">Enter a valid email address</label>
         </fieldset>
         <fieldset class="inputContainer tel">
           <legend>Tel</legend>
-          <input
-            type="tel"
-            name="Tel"
-            placeholder="Tel"
-            oninput="validateInput(event.target)"
-            onblur="validateInput(event.target)"
-            required
-          />
+          <input type="tel" name="Tel" placeholder="Tel" />
           <label class="invalidText">Enter a valid telephone number</label>
         </fieldset>
-        <fieldset>
+        <fieldset class="inputContainer">
           <legend>Purpose of contact</legend>
           <select id="purpose" class="dropdown" name="Purpose of contact">
             <option value="">Select an option</option>
@@ -63,57 +45,55 @@
           </select>
           <label class="invalidText">Select an option</label>
         </fieldset>
-        <fieldset>
+        <fieldset class="inputContainer">
           <legend>Contact me via</legend>
-          <label class="telEmailLabel"
+          <label class="radioLabel telEmailLabel"
             >Email
-            <input
-              type="radio"
-              name="Contact via"
-              id="email"
-              value="Email"
-              required
+            <input type="radio" name="Contact via" id="email" value="Email"
           /></label>
-          <label class="telEmailLabel"
+          <label class="radioLabel telEmailLabel"
             >Tel <input type="radio" name="Contact via" id="tel" value="Tel"
           /></label>
-          
-          <label class="emailSpecificationLabel hidden"
+          <label class="invalidText">Select an option</label>
+          <br />
+          <label class="hidden" id="emailSpecificationLabel1"
             >Use entered email
             <input
               type="radio"
-              name="EmailSpecification"
+              name="Email specification"
               value="Use entered email"
           /></label>
-          <label class="emailSpecificationLabel hidden"
+          <label class="hidden" id="emailSpecificationLabel2"
             >Use another email
             <input
               type="radio"
-              name="EmailSpecification"
+              name="Email specification"
               value="Use another email"
           /></label>
+          <label class="invalidText">Select an option</label>
         </fieldset>
         <fieldset class="inputContainer message">
           <legend>Message</legend>
           <label
-            ><input type="checkbox" name="checkboxMessage" id="message" />Leave
-            a Message</label
+            ><input
+              type="checkbox"
+              name="checkboxMessage"
+              class="notRequired"
+              id="message"
+            />Leave a Message</label
           >
           <input
             type="text"
             name="MessageText"
             class="hidden"
             placeholder="...Write something"
-            oninput="validateInput(event.target)"
-            onblur="validateInput(event.target)"
           />
-          <label class="invalidText"
-            >Input text should contain at least 50 characters</label
-          >
+          <label class="invalidText">Input character range is (1 - 50)</label>
         </fieldset>
-        <label
-          ><input type="checkbox" name="checkboxTerms" id="terms" required />
-          Accept terms</label
+        <label class="termsLabel"
+          ><input type="checkbox" name="checkboxTerms" id="terms" />
+          Accept terms
+          <label class="invalidText">Check this box to proceed</label></label
         >
         <button type="submit" class="registerButton">Submit</button>
       </form>

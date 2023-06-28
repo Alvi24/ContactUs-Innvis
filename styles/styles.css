@@ -26,11 +26,12 @@ h1 {
 .form fieldset {
   position: relative;
   text-align: center;
+  border-radius: 5px;
 }
 .form fieldset legend {
   color: rgb(57, 144, 173);
 }
-.form .inputContainer:where(.name-lastname, .email-tel, .message) {
+.form .inputContainer.message {
   grid-column: 1/-1;
 }
 .form input,
@@ -39,6 +40,8 @@ h1 {
   border: none;
   background: none;
   border-bottom: 2px solid rgb(57, 144, 173);
+  border-radius: 0px;
+  color: black;
 }
 .form input:-webkit-autofill,
 .form input:-webkit-autofill:hover,
@@ -50,21 +53,39 @@ h1 {
   width: 80%;
 }
 .form label {
+  width: fit-content;
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
+}
+.form #emailSpecificationLabel1 {
+  margin-bottom: 3px;
 }
 .form .hidden,
 .form .invalidText {
   display: none;
 }
-.form .invalid {
+.form :is(input, select).invalid {
   position: relative;
   border: 2px solid red;
+}
+.form label.invalid {
+  background-color: rgb(250, 208, 209);
 }
 .form .invalid + .invalidText {
   display: inline-block;
   color: red;
   white-space: nowrap;
+  font-size: 0.8em;
+}
+.form .termsLabel {
+  position: relative;
+  transform: translateX(20%);
+}
+.form .termsLabel .invalidText {
+  position: absolute;
+  top: 100%;
+  left: -15%;
   font-size: 0.8em;
 }
 .form input:is([type=radio], [type=checkbox]) {
@@ -79,4 +100,25 @@ h1 {
 }
 .form .registerButton:hover {
   transform: scale(1.05);
+}
+
+@media (max-width: 500px) {
+  *:not(h1) {
+    font-size: 0.95em;
+  }
+  h1 {
+    margin-block: 0;
+    font-size: 1.5em;
+  }
+  .form {
+    grid-template-columns: 170px 170px;
+    gap: 5px;
+  }
+  .form .inputContainer {
+    grid-column: 1/-1;
+  }
+  .form .inputContainer input,
+  .form select {
+    width: 80%;
+  }
 }/*# sourceMappingURL=styles.css.map */

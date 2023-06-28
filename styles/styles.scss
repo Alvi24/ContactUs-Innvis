@@ -27,13 +27,14 @@ h1 {
   fieldset {
     position: relative;
     text-align: center;
+    border-radius: 5px;
 
     legend {
       color: rgb(57, 144, 173);
     }
   }
 
-  .inputContainer:where(.name-lastname, .email-tel, .message) {
+  .inputContainer.message {
     grid-column: 1/-1;
   }
 
@@ -43,11 +44,13 @@ h1 {
     border: none;
     background: none;
     border-bottom: 2px solid rgb(57, 144, 173);
+    border-radius: 0px;
+    color: black;
   }
 
-  input:-webkit-autofill,
+  input:-webkit-autofill,    /* autofill styles*/
   input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
+  input:-webkit-autofill:focus, 
   input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
   }
@@ -57,8 +60,14 @@ h1 {
   }
 
   label {
+    width: fit-content;
     display: inline-flex;
     align-items: center;
+    white-space: nowrap;
+  }
+
+  #emailSpecificationLabel1 {
+    margin-bottom: 3px;
   }
 
   .hidden,
@@ -66,15 +75,31 @@ h1 {
     display: none;
   }
 
-  .invalid {
+  :is(input, select).invalid {
     position: relative;
     border: 2px solid red;
+  }
+
+  label.invalid {
+    background-color: rgb(250, 208, 209);
   }
 
   .invalid + .invalidText {
     display: inline-block;
     color: red;
     white-space: nowrap;
+    font-size: 0.8em;
+  }
+
+  .termsLabel {
+    position: relative;
+    transform: translateX(20%);
+  }
+
+  .termsLabel .invalidText {
+    position: absolute;
+    top: 100%;
+    left: -15%;
     font-size: 0.8em;
   }
 
@@ -91,6 +116,29 @@ h1 {
 
     &:hover {
       transform: scale(1.05);
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  *:not(h1) {
+    font-size: 0.95em;
+  }
+  h1 {
+    margin-block: 0;
+    font-size: 1.5em;
+  }
+  .form {
+    grid-template-columns: 170px 170px;
+    gap: 5px;
+
+    .inputContainer {
+      grid-column: 1/-1;
+    }
+
+    .inputContainer input,
+    select {
+      width: 80%;
     }
   }
 }
