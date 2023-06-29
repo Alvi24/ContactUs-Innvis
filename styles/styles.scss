@@ -84,7 +84,8 @@ h1 {
     background-color: rgb(250, 208, 209);
   }
 
-  .invalid + .invalidText {
+  .invalid + .invalidText,
+  .invalid .invalidText {
     display: inline-block;
     color: red;
     white-space: nowrap;
@@ -118,6 +119,60 @@ h1 {
       transform: scale(1.05);
     }
   }
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  z-index: 10;
+  margin-top: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 1rem;
+  transform: translate(-50%, 50%);
+}
+
+.modalTitle {
+  text-align: center;
+  margin-block: 5px;
+}
+
+.modalText {
+  display: inline-block;
+  height: 100px;
+  line-height: 20px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  font-size: .9em;
+  overflow: auto;
+}
+
+.modal button {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin-inline-end: 6px;
+  cursor: pointer;
+}
+
+.closeModalButton {
+  background-color: rgb(148, 148, 148);
+}
+
+.continueModalButton {
+  background-color: rgb(57, 144, 173);
+}
+
+.continueModalButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media (max-width: 500px) {

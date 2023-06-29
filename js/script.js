@@ -1,9 +1,14 @@
 const form = document.querySelector("form");
-const messageCheckBox = document.querySelector("input[name='checkboxMessage']");
+const checkboxMessage = document.querySelector("input[name='checkboxMessage']");
+const checkboxTerms = document.querySelector("input[name='checkboxTerms']");
 const radioButtonsContactVia = Array.from(
   document.querySelectorAll("input[name='Contact via']")
 );
 const dropdown = document.querySelector("select");
+const modal = document.querySelector(".modal");
+const modalText = document.querySelector(".modalText");
+const modalCloseButton = document.querySelector(".closeModalButton");
+const modalContinueButton = document.querySelector(".continueModalButton");
 
 window.addEventListener("load", function () {
   // refresh all inputs on reload (Firefox) and add event listeners
@@ -21,7 +26,7 @@ window.addEventListener("load", function () {
     button.checked = false;
     button.addEventListener("click", (e) => validateInput(e.target));
   });
-  messageCheckBox.checked = false;
+  checkboxMessage.checked = false;
 });
 
 dropdown.addEventListener("change", () => {
@@ -49,7 +54,7 @@ radioButtonsContactVia.forEach((radioButtonContactVia) => {
   );
 });
 
-messageCheckBox.addEventListener("click", () => {
+checkboxMessage.addEventListener("click", () => {
   const messageTextInput = document.querySelector("input[name='MessageText']");
   if (messageTextInput.classList.contains("hidden")) {
     messageTextInput.classList.remove("hidden");
@@ -106,7 +111,6 @@ function validateInput(input) {
       isInputValid = input.value !== "";
       break;
     case "radio":
-    case "checkbox":
       isInputValid = validateButton(input.name);
       break;
     default:
@@ -123,13 +127,18 @@ function validateForm(formEvent) {
 
   const inputs = Array.from(
     document.querySelectorAll(
-      "select,input:not(.hidden,.hidden *,.notRequired)"
+      "select,input:not(.hidden,.hidden *,.notRequired,[type='checkbox'])"
     )
   );
   let isFormValid = true;
 
   for (const input of inputs) {
     if (!validateInput(input)) isFormValid = false;
+  }
+
+  if (!checkboxTerms.checked) {
+    isFormValid = false;
+    checkboxTerms.parentElement.classList.add("invalid");
   }
 
   if (!isFormValid) return;
@@ -143,3 +152,30 @@ function validateForm(formEvent) {
 }
 
 form.addEventListener("submit", (e) => validateForm(e));
+
+checkboxTerms.addEventListener("click", (e) => {
+  if (!modalContinueButton.disabled) modalContinueButton.disabled = true;
+
+  if (checkboxTerms.checked) {
+    e.preventDefault();
+    modal.showModal();
+  } else checkboxTerms.checked = false;
+});
+
+modalCloseButton.addEventListener("click", () => {
+  modalText.scrollTop = 0;
+  modal.close();
+});
+modalContinueButton.addEventListener("click", () => {
+  checkboxTerms.checked = true;
+  checkboxTerms.parentElement.classList.remove("invalid");
+  modalText.scrollTop = 0;
+  modal.close();
+});
+
+modalText.addEventListener("scroll", (e) => {
+  const { scrollHeight, scrollTop, clientHeight } = e.target;
+
+  if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1)
+    modalContinueButton.disabled = false;
+});
