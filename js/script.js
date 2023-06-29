@@ -21,6 +21,7 @@ window.addEventListener("load", function () {
     button.checked = false;
     button.addEventListener("click", (e) => validateInput(e.target));
   });
+  messageCheckBox.checked = false;
 });
 
 dropdown.addEventListener("change", () => {
