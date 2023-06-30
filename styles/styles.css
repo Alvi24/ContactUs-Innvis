@@ -1,0 +1,171 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("../assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+body {
+  display: grid;
+  place-items: center;
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+h1 {
+  color: rgb(57, 144, 173);
+}
+
+.form {
+  border: 2px solid rgb(57, 144, 173);
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 200px 200px;
+  gap: 15px;
+  border-radius: 7px;
+}
+.form .inputContainer {
+  position: relative;
+  text-align: center;
+  border-radius: 5px;
+}
+.form .inputContainer.message {
+  grid-column: 1/-1;
+}
+.form .inputContainer legend {
+  color: rgb(57, 144, 173);
+}
+.form .inputContainer input,
+.form .inputContainer select {
+  outline: none;
+  border: none;
+  background: none;
+  border-bottom: 2px solid rgb(57, 144, 173);
+  border-radius: 0px;
+  color: black;
+}
+.form .inputContainer input.invalid,
+.form .inputContainer select.invalid {
+  position: relative;
+  border: 2px solid red;
+}
+.form input[type=text] {
+  width: 80%;
+}
+.form input:is([type=radio], [type=checkbox]) {
+  accent-color: rgb(57, 144, 173);
+}
+.form input:-webkit-autofill, .form input:-webkit-autofill:hover, .form input:-webkit-autofill:focus, .form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+.form label {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.form label.invalid {
+  background-color: rgb(250, 208, 209);
+}
+.form #emailSpecificationLabel1 {
+  margin-bottom: 3px;
+}
+.form .hidden,
+.form .invalidText {
+  display: none;
+}
+.form .invalid + .invalidText,
+.form .invalid .invalidText {
+  display: inline-block;
+  color: red;
+  white-space: nowrap;
+  font-size: 0.8em;
+}
+.form .termsLabel {
+  position: relative;
+  transform: translateX(20%);
+}
+.form .termsLabel .invalidText {
+  position: absolute;
+  top: 100%;
+  left: -15%;
+  font-size: 0.8em;
+}
+.form .registerButton {
+  color: white;
+  background-color: rgb(57, 144, 173);
+  border: none;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.form .registerButton:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  z-index: 10;
+  margin-top: 10px;
+  width: 300px;
+  border: none;
+  border-radius: 1rem;
+  transform: translate(-50%, 50%);
+}
+.modal .modalTitle {
+  text-align: center;
+  margin-block: 5px;
+}
+.modal .modalText {
+  display: inline-block;
+  height: 100px;
+  line-height: 20px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  font-size: 0.9em;
+  overflow: auto;
+}
+.modal button {
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  margin-inline-end: 6px;
+  cursor: pointer;
+}
+.modal .closeModalButton {
+  background-color: rgb(148, 148, 148);
+}
+.modal .continueModalButton {
+  background-color: rgb(57, 144, 173);
+}
+.modal .continueModalButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.modal::backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 500px) {
+  *:not(h1) {
+    font-size: 0.95em;
+  }
+  h1 {
+    margin-block: 0;
+    font-size: 1.5em;
+  }
+  .form {
+    grid-template-columns: 170px 170px;
+    gap: 5px;
+  }
+  .form .inputContainer {
+    grid-column: 1/-1;
+  }
+  .form .inputContainer input,
+  .form .inputContainer select {
+    width: 80%;
+  }
+}/*# sourceMappingURL=styles.css.map */

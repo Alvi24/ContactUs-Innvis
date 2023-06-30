@@ -1,10 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Contact us</h1>
+    </header>
+    <main>
+      <form class="form">
+        <fieldset class="inputContainer name">
+          <legend>Name</legend>
+          <input type="text" name="Name" placeholder="Name" />
+          <label class="invalidText">Input character range is (1 - 50)</label>
+        </fieldset>
+        <fieldset class="inputContainer lastname">
+          <legend>Last Name</legend>
+          <input type="text" name="Last Name" placeholder="Last Name" />
+          <label class="invalidText">Input character range is (1 - 50)</label>
+        </fieldset>
+        <fieldset class="inputContainer email">
+          <legend>Email</legend>
+          <input type="email" name="Email" placeholder="Email" />
+          <label class="invalidText">Enter a valid email address</label>
+        </fieldset>
+        <fieldset class="inputContainer tel">
+          <legend>Tel</legend>
+          <input type="tel" name="Tel" placeholder="Tel" />
+          <label class="invalidText">Enter a valid telephone number</label>
+        </fieldset>
+        <fieldset class="inputContainer">
+          <legend>Purpose of contact</legend>
+          <select id="purpose" class="dropdown" name="Purpose of contact">
+            <option value="" hidden>Select an option</option>
+            <option value="General-inquiry">General Inquiry</option>
+            <option value="Product-support">Product Support</option>
+            <option value="Sales-inquiry">Sales Inquiry</option>
+            <option value="Media-press-inquiry">Media/Press Inquiry</option>
+            <option value="Feedback-suggestions">Feedback/Suggestions</option>
+            <option value="Other">Other</option>
+          </select>
+          <label class="invalidText">Select an option</label>
+        </fieldset>
+        <fieldset class="inputContainer">
+          <legend>Contact me via</legend>
+          <label class="radioLabel telEmailLabel"
+            >Email
+            <input type="radio" name="Contact via" id="email" value="Email"
+          /></label>
+          <label class="radioLabel telEmailLabel"
+            >Tel <input type="radio" name="Contact via" id="tel" value="Tel"
+          /></label>
+          <label class="invalidText">Select an option</label>
+          <br />
+          <label class="hidden" id="emailSpecificationLabel1"
+            >Use entered email
+            <input
+              type="radio"
+              name="Email specification"
+              value="Use entered email"
+          /></label>
+          <label class="hidden" id="emailSpecificationLabel2"
+            >Use another email
+            <input
+              type="radio"
+              name="Email specification"
+              value="Use another email"
+          /></label>
+          <label class="invalidText">Select an option</label>
+        </fieldset>
+        <fieldset class="inputContainer message">
+          <legend>Message</legend>
+          <label
+            ><input
+              type="checkbox"
+              name="checkboxMessage"
+              class="notRequired"
+              id="message"
+            />Leave a Message</label
+          >
+          <input
+            type="text"
+            name="MessageText"
+            class="hidden"
+            placeholder="...Write something"
+          />
+          <label class="invalidText">Input character range is (1 - 50)</label>
+        </fieldset>
+        <label class="termsLabel"
+          ><input type="checkbox" name="checkboxTerms" id="terms" />
+          Accept terms
+          <label class="invalidText">Check this box to proceed</label></label
+        >
+        <button type="submit" class="registerButton">Submit</button>
+      </form>
+    </main>
+
+    <dialog class="modal">
+      <h3 class="modalTitle">Terms and policies</h3>
+      <p class="modalText">
+        1. ACCEPTANCE THE USE OF LOREM IPSUM TERMS AND CONDITIONS Your access to
+        and use of Lorem Ipsum (the app) is subject exclusively to these Terms
+        and Conditions. You will not use the app for any purpose that is
+        unlawful or prohibited by these Terms and Conditions. By using the app
+        you are fully accepting the terms, conditions and disclaimers contained
+        in this notice. If you do not accept these Terms and Conditions you must
+        immediately stop using the app.<br /><br />
+        2. CREDIT CARD DETAILS All Lorem Ipsum purchases are managed by the
+        individual App Stores (Apple, Google Windows) and Lorem Ipsum will never
+        store your credit card information or make it available to any third
+        parties. Any purchasing information provided will be provided directly
+        from you to the respective App Store and you will be subject to their
+        credit card policies.<br /><br />
+        3. LEGAL ADVICE The contents of Lorem Ipsum app do not constitute advice
+        and should not be relied upon in making or refraining from making, any
+        decision. All material contained on Lorem Ipsum is provided without any
+        or warranty of any kind. You use the material on Lorem Ipsum at your own
+        discretion <br /><br />
+        4. CHANGE OF USE Lorem Ipsum reserves the right to:<br />
+        4.1 change or remove (temporarily or permanently) the app or any part of
+        it without notice and you confirm that Lorem Ipsum shall not be liable
+        to you for any such change or removal and.<br />
+        4.2 change these Terms and Conditions at any time, and your continued
+        use of the app following any changes shall be deemed to be your
+        acceptance of such change.
+      </p>
+      <button class="closeModalButton">Close</button>
+      <button class="continueModalButton" disabled>Continue</button>
+    </dialog>
+    <script src="./js/script.js"></script>
+  </body>
 </html>
