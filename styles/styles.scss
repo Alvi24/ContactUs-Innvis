@@ -24,39 +24,50 @@ h1 {
   gap: 15px;
   border-radius: 7px;
 
-  fieldset {
+  .inputContainer {
     position: relative;
     text-align: center;
     border-radius: 5px;
 
+    &.message {
+      grid-column: 1/-1;
+    }
+
     legend {
       color: rgb(57, 144, 173);
     }
+
+    input,
+    select {
+      outline: none;
+      border: none;
+      background: none;
+      border-bottom: 2px solid rgb(57, 144, 173);
+      border-radius: 0px;
+      color: black;
+
+      &.invalid {
+        position: relative;
+        border: 2px solid red;
+      }
+    }
   }
 
-  .inputContainer.message {
-    grid-column: 1/-1;
-  }
+  input {
+    &[type="text"] {
+      width: 80%;
+    }
 
-  input,
-  select {
-    outline: none;
-    border: none;
-    background: none;
-    border-bottom: 2px solid rgb(57, 144, 173);
-    border-radius: 0px;
-    color: black;
-  }
+    &:is([type="radio"], [type="checkbox"]) {
+      accent-color: rgb(57, 144, 173);
+    }
 
-  input:-webkit-autofill,    /* autofill styles*/
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-  }
-
-  input[type="text"] {
-    width: 80%;
+    &:-webkit-autofill,    /*remove  autofill style*/
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus, 
+    &:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 30px white inset !important;
+    }
   }
 
   label {
@@ -64,6 +75,10 @@ h1 {
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
+
+    &.invalid {
+      background-color: rgb(250, 208, 209);
+    }
   }
 
   #emailSpecificationLabel1 {
@@ -73,15 +88,6 @@ h1 {
   .hidden,
   .invalidText {
     display: none;
-  }
-
-  :is(input, select).invalid {
-    position: relative;
-    border: 2px solid red;
-  }
-
-  label.invalid {
-    background-color: rgb(250, 208, 209);
   }
 
   .invalid + .invalidText,
@@ -95,17 +101,13 @@ h1 {
   .termsLabel {
     position: relative;
     transform: translateX(20%);
-  }
 
-  .termsLabel .invalidText {
-    position: absolute;
-    top: 100%;
-    left: -15%;
-    font-size: 0.8em;
-  }
-
-  input:is([type="radio"], [type="checkbox"]) {
-    accent-color: rgb(57, 144, 173);
+    .invalidText {
+      position: absolute;
+      top: 100%;
+      left: -15%;
+      font-size: 0.8em;
+    }
   }
 
   .registerButton {
@@ -131,48 +133,49 @@ h1 {
   border: none;
   border-radius: 1rem;
   transform: translate(-50%, 50%);
-}
 
-.modalTitle {
-  text-align: center;
-  margin-block: 5px;
-}
+  .modalTitle {
+    text-align: center;
+    margin-block: 5px;
+  }
 
-.modalText {
-  display: inline-block;
-  height: 100px;
-  line-height: 20px;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  font-size: .9em;
-  overflow: auto;
-}
+  .modalText {
+    display: inline-block;
+    height: 100px;
+    line-height: 20px;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    font-size: 0.9em;
+    overflow: auto;
+  }
 
-.modal button {
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  border: none;
-  color: white;
-  margin-inline-end: 6px;
-  cursor: pointer;
-}
+  button {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin-inline-end: 6px;
+    cursor: pointer;
+  }
 
-.closeModalButton {
-  background-color: rgb(148, 148, 148);
-}
+  .closeModalButton {
+    background-color: rgb(148, 148, 148);
+  }
 
-.continueModalButton {
-  background-color: rgb(57, 144, 173);
-}
+  .continueModalButton {
+    background-color: rgb(57, 144, 173);
 
-.continueModalButton:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
 
-dialog::backdrop {
-  background-color: rgba(0, 0, 0, 0.3);
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+  }
 }
 
 @media (max-width: 500px) {
@@ -189,11 +192,11 @@ dialog::backdrop {
 
     .inputContainer {
       grid-column: 1/-1;
-    }
 
-    .inputContainer input,
-    select {
-      width: 80%;
+      input,
+      select {
+        width: 80%;
+      }
     }
   }
 }

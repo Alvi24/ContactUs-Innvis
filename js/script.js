@@ -10,28 +10,30 @@ const modalText = document.querySelector(".modalText");
 const modalCloseButton = document.querySelector(".closeModalButton");
 const modalContinueButton = document.querySelector(".continueModalButton");
 
-window.addEventListener("load", function () {
+function initializeInputs() {
   // refresh all inputs on reload (Firefox) and add event listeners
-  let textInputs = document.querySelectorAll(
-    'select,input:not(:is([type="checkbox"],[type="radio"]),.notRequired)'
+  const textInputs = document.querySelectorAll(
+    'select,input:not([type="checkbox"],[type="radio"],.notRequired)'
   );
-  let buttons = document.querySelectorAll(
+  const buttons = document.querySelectorAll(
     'input:is([type="checkbox"],[type="radio"]):not(.notRequired)'
   );
+
   textInputs.forEach((textInput) => {
     textInput.value = "";
     textInput.addEventListener("input", (e) => validateInput(e.target));
   });
+  dropdown.addEventListener("change", () =>
+    dropdown.classList.remove("invalid")
+  );
   buttons.forEach((button) => {
     button.checked = false;
     button.addEventListener("click", (e) => validateInput(e.target));
   });
   checkboxMessage.checked = false;
-});
+}
 
-dropdown.addEventListener("change", () => {
-  dropdown.classList.remove("invalid");
-});
+window.addEventListener("load", () => initializeInputs());
 
 function handleRadioButtonTelEmailClick(clickedRadioButtonTelEmail) {
   const radioButtonsEmailSpecification = Array.from(
@@ -39,10 +41,11 @@ function handleRadioButtonTelEmailClick(clickedRadioButtonTelEmail) {
   );
 
   radioButtonsEmailSpecification.forEach((radioButtonEmailSpecification) => {
-    if (clickedRadioButtonTelEmail.id == "email") {
+    if (clickedRadioButtonTelEmail.id === "email") {
       radioButtonEmailSpecification.parentElement.classList.remove("hidden");
     } else {
-      radioButtonEmailSpecification.parentElement.classList = "hidden";
+      radioButtonEmailSpecification.parentElement.classList.add("hidden");
+      radioButtonEmailSpecification.parentElement.classList.remove("invalid");
       radioButtonEmailSpecification.checked = false;
     }
   });
@@ -60,7 +63,8 @@ checkboxMessage.addEventListener("click", () => {
     messageTextInput.classList.remove("hidden");
   } else {
     messageTextInput.value = "";
-    messageTextInput.classList = "hidden";
+    messageTextInput.classList.add("hidden");
+    messageTextInput.classList.remove("invalid");
   }
 });
 
@@ -132,9 +136,9 @@ function validateForm(formEvent) {
   );
   let isFormValid = true;
 
-  for (const input of inputs) {
+  inputs.forEach((input) => {
     if (!validateInput(input)) isFormValid = false;
-  }
+  });
 
   if (!checkboxTerms.checked) {
     isFormValid = false;
@@ -175,7 +179,6 @@ modalContinueButton.addEventListener("click", () => {
 
 modalText.addEventListener("scroll", (e) => {
   const { scrollHeight, scrollTop, clientHeight } = e.target;
-
   if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1)
     modalContinueButton.disabled = false;
 });

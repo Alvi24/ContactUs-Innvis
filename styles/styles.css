@@ -23,19 +23,19 @@ h1 {
   gap: 15px;
   border-radius: 7px;
 }
-.form fieldset {
+.form .inputContainer {
   position: relative;
   text-align: center;
   border-radius: 5px;
 }
-.form fieldset legend {
-  color: rgb(57, 144, 173);
-}
 .form .inputContainer.message {
   grid-column: 1/-1;
 }
-.form input,
-.form select {
+.form .inputContainer legend {
+  color: rgb(57, 144, 173);
+}
+.form .inputContainer input,
+.form .inputContainer select {
   outline: none;
   border: none;
   background: none;
@@ -43,14 +43,19 @@ h1 {
   border-radius: 0px;
   color: black;
 }
-.form input:-webkit-autofill,
-.form input:-webkit-autofill:hover,
-.form input:-webkit-autofill:focus,
-.form input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px white inset !important;
+.form .inputContainer input.invalid,
+.form .inputContainer select.invalid {
+  position: relative;
+  border: 2px solid red;
 }
 .form input[type=text] {
   width: 80%;
+}
+.form input:is([type=radio], [type=checkbox]) {
+  accent-color: rgb(57, 144, 173);
+}
+.form input:-webkit-autofill, .form input:-webkit-autofill:hover, .form input:-webkit-autofill:focus, .form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 .form label {
   width: fit-content;
@@ -58,19 +63,15 @@ h1 {
   align-items: center;
   white-space: nowrap;
 }
+.form label.invalid {
+  background-color: rgb(250, 208, 209);
+}
 .form #emailSpecificationLabel1 {
   margin-bottom: 3px;
 }
 .form .hidden,
 .form .invalidText {
   display: none;
-}
-.form :is(input, select).invalid {
-  position: relative;
-  border: 2px solid red;
-}
-.form label.invalid {
-  background-color: rgb(250, 208, 209);
 }
 .form .invalid + .invalidText,
 .form .invalid .invalidText {
@@ -88,9 +89,6 @@ h1 {
   top: 100%;
   left: -15%;
   font-size: 0.8em;
-}
-.form input:is([type=radio], [type=checkbox]) {
-  accent-color: rgb(57, 144, 173);
 }
 .form .registerButton {
   color: white;
@@ -114,13 +112,11 @@ h1 {
   border-radius: 1rem;
   transform: translate(-50%, 50%);
 }
-
-.modalTitle {
+.modal .modalTitle {
   text-align: center;
   margin-block: 5px;
 }
-
-.modalText {
+.modal .modalText {
   display: inline-block;
   height: 100px;
   line-height: 20px;
@@ -129,7 +125,6 @@ h1 {
   font-size: 0.9em;
   overflow: auto;
 }
-
 .modal button {
   padding: 10px;
   text-align: center;
@@ -139,22 +134,19 @@ h1 {
   margin-inline-end: 6px;
   cursor: pointer;
 }
-
-.closeModalButton {
+.modal .closeModalButton {
   background-color: rgb(148, 148, 148);
 }
-
-.continueModalButton {
+.modal .continueModalButton {
   background-color: rgb(57, 144, 173);
 }
-
-.continueModalButton:disabled {
+.modal .continueModalButton:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-dialog::backdrop {
+.modal::backdrop {
   background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(2px);
 }
 
 @media (max-width: 500px) {
@@ -173,7 +165,7 @@ dialog::backdrop {
     grid-column: 1/-1;
   }
   .form .inputContainer input,
-  .form select {
+  .form .inputContainer select {
     width: 80%;
   }
 }/*# sourceMappingURL=styles.css.map */
